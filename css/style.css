@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,700;1,400&display=swap');
+/* Reset */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Vollkorn', Georgia, serif;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+}
+
+
+/* Grid Geral */
+.estrutura {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) 3fr 300px;
+  grid-template-areas: 
+    "header header header"
+    "sidenav content anuncios"
+    "footer footer footer"
+  ;
+}
+
+  /* REPONSIVIDADE */
+@media (max-width: 1200px) {
+  .estrutura {
+    grid-template-areas: 
+      "header header header"
+      "sidenav content content"
+      "sidenav anuncios anuncios"
+      "footer footer footer"
+  ;
+  }
+}
+
+@media (max-width: 760px) {
+  .estrutura {
+  grid-template-columns: 100%;
+  grid-template-areas: 
+    "header"
+    "sidenav"
+    "content"
+    "anuncios"
+    "footer"
+  ;
+  }
+}
+
+
+/* HEADER */
+.header {
+  grid-area: header;
+  background: linear-gradient(135deg, #8844ee, #B07DFB);
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.logo {
+  max-width: 200px;
+}
+
+.header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header nav a {
+  display: block;
+  padding: 10px;
+  color: #FFF;
+  font-size: 1.125em;
+  background: rgba(0, 0, 0, .1);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+.header nav a:hover {
+  background: rgba(0, 0, 0, .5);
+}
+
+.header li + li {   /* Adiciona os valores a todo LI que vem APÓS um LI */
+  margin-left: 30px;
+}
+
+@media (max-width: 760px) {
+  .header {
+  grid-template-columns: auto;
+  justify-content: center;
+  max-width: 100%;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+    max-width: 100%;
+  }
+
+  .header nav {
+  justify-self: center;
+  }
+  .header nav a {
+    font-size: 1em;
+  }
+
+  .header li + li {   
+    margin-left: 10px;
+  }
+}
+
+
+/*  SIDENAV */
+.sidenav {
+  grid-area: sidenav;
+  background-color: #fafbfc;
+  padding: 30px;
+}
+
+.sidenav ul li a {
+  display: block;
+  min-width: 60px;
+  max-width: 100px;
+  margin: 0 auto 30px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, .15);
+  transition: .2s ease-out;
+}
+.sidenav ul li a:hover {
+  background-color: #B07DFB;
+}
+
+@keyframes seta {  /* Cria uma animação pra setinha */
+  from {
+    right: 30px;
+  }
+  to {
+    right: 20px;
+  }
+}
+
+@media (max-width: 760px) {
+  .sidenav {
+    padding: 0 30px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;  /* Adapta o scroll ao touch de acordo com a necessidade do navegador */
+    -ms-overflow-style: -ms-autohiding-scrollbar; /* Esconde a barra de scroll em dispositivos da Microsoft */
+    position: relative;
+  }
+  .sidenav::after {   /* Adiciona uma seta pra indicar ao usuario que ele pode arrastar o menu pro lado */
+    content: '🠖';
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    font-size: 1.125em;
+    color: rgba(0, 0, 0, .5);
+    animation: seta .5s ease-in 0s infinite alternate; /* Animação setinha */
+  }
+
+  .sidenav ul {
+    display: flex;
+  }
+  .sidenav ul li {
+    flex: 1 0 60px;
+  }
+  .sidenav ul li a {
+    margin: 30px 30px 30px 0;
+  }
+
+}
+
+
+/* CONTEUDO PRINCIPAL */
+.content {
+  grid-area: content;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 30px;
+}
+
+@media (max-width: 600px) {
+  .content {
+    grid-template-columns: auto;
+  }
+}
+
+.col-wide {
+  grid-column: 1 / -1;
+}
+
+.lobo01 {
+  grid-row: span 2;
+  align-self: end;
+}
+
+.lobo02 {
+  align-self: end;
+}
+
+  /* ESTILOS CONTENT */
+p {
+  font-size: 1.2em;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+  color: rgba(0, 0, 0, .7);
+}
+
+.informacoes p + p {
+  margin-top: 30px;
+}
+
+  /* TÍTULO */
+.titulo {
+  color: #B07DFB;
+}
+.titulo h1 {
+  font-size: 3.75em;
+  line-height: 1;
+  font-weight: 700;
+}
+.titulo span {
+  font-size: .875em;
+  font-style: italic;
+}
+
+  /* CARACTERÍSTICAS */
+.caracteristicas {
+  display: flex;
+  align-items: flex-start;
+}
+
+.caracteristicas > div {
+  width: 80px;
+  text-align: center;
+  background: linear-gradient(135deg, #8844ee, #B07DFB);
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, .15);
+  position: relative;   /* Pra corrigir a cor do fundo que vazou*/
+}
+.caracteristicas > div:first-child {
+  margin-right: 30px;
+}
+
+.caracteristicas span {
+  color: #B07DFB;
+  display: block;
+}
+
+.numero {
+  font-size: 3em;
+  line-height: 1;
+  margin: 10 auto;
+  padding: 5px;
+}
+
+.rotulo {
+  background-color: #fff;
+  border-radius: 0 0 5px 5px;
+  padding: 5px 0;
+  position: relative;   /* Pra corrigir a cor do fundo que vazou*/
+  top: 2px;
+}
+
+.destaque {
+  font-size: .875em;
+  color: #B07DFB;
+  max-width: 16em;
+  align-self: end;
+}
+
+  /* ATRIBUTOS */
+.citacao, .atributos {
+  align-self: start;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, .15);
+  background: linear-gradient(135deg, #8844ee, #B07DFB);
+}
+
+.citacao p {
+  font-size: 1.5em;
+  font-style: italic;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.atributos li {
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.125em;
+  padding: 15px;
+}
+.atributos li + li {
+  border-top: 2px solid #B07DFB;
+}
+
+
+/* ANÚNCIOS */
+.anuncios {
+  grid-area: anuncios;
+  background-color: #fafbfc;
+  display: grid;
+  align-content: start;
+  padding: 30px;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.anuncio-item img{    /* Micro animação pra parecer que é um link de anuncio / pra n ficar estático*/
+  transition: .1s ease-in;
+}
+.anuncio-item img:hover {
+  opacity: .8;
+}
+
+/* FOOTER */
+.footer {
+  grid-area: footer;
+  background: linear-gradient(135deg, #8844ee, #B07DFB);
+  padding: 30px;
+}
+
+.footer p {
+  color: #fff;
+  text-align: center;
+}
+.footer p + p{
+  margin-top: 15px;
+}
+
+.footer p a{
+  color: #000;
+}
+.footer p a:visited {
+  color: #000;
+}
+
+@media (max-width: 600px) {
+  .footer p {
+    font-size: .875em;
+  }
+}
