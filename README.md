@@ -1,5 +1,5 @@
 # Wildbeast-CSS-Grid
-rojeto criado durante o curso de CSS Grid da Origamid©.
+Projeto criado durante o curso de CSS Grid da Origamid©.
 
 Site Wildbeast é um projeto feito com a utilização em sua maioria de grid layout.
 
